@@ -1,8 +1,10 @@
 body {
     margin: 0;
-    font-family: 'VT323', monospace;
+    font-family: 'Inter', sans-serif;
 }
 
 header {
     text-align: center;
+    font-size: 32px;
+    font-weight: 700;
 }
