@@ -6,81 +6,74 @@
 5. Move Set
 */
 
-
-
-
 let dexNumber = 1;
-
-let pokemonObject =  `https://pokeapi.co/api/v2/pokemon/${dexNumber}/`
-
-let pokemonData = null;
-
-let pokemonResponse = async () => {
-    try {
-        const response = await fetch(pokemonObject);
-        pokemonData = response;
-    } catch (error) {
-        console.log(error);
-    }
-
-}
-
-
-
+let pokemonObject = `https://pokeapi.co/api/v2/pokemon/${dexNumber}/`;
 
 let pokeSprite = document.querySelector("#pokemon-sprite");
 let pokeName = document.querySelector("#pokemon-name");
 const leftButton = document.querySelector("#left-button");
 const rightButton = document.querySelector("#right-button");
 
+const pokemonResponse = async () => {
+  try {
+    const response = (await fetch(pokemonObject)).json();
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
+let pokemonData = pokemonResponse();
 
-leftButton.addEventListener("click", (e) => {
-    decrementDex();
-    updateObject(dexNumber)
-    updateSprite();
-    updateName();
-    updateType();
-})
-
-rightButton.addEventListener("click", (e) => {
-    incrementDex();
-    updateObject(dexNumber)
-    updateSprite();
-    updateName();
-    updateType();
-})
+const updateSprite = async () => {
+        try {
+          let pokemonData = await pokemonResponse();
+          const spriteSRC = pokemonData.sprites.front_default;
+          pokeSprite.setAttribute("src", spriteSRC);
+        } catch (error) {
+          console.log(error);
+        }
+};
 
 const decrementDex = () => {
-    if (dexNumber === 1) {
-        return; ///maybe htrow alert/pop-up to deter
-    } else {
-        dexNumber--;
-    }
-}
+  if (dexNumber === 1) {
+    return; ///maybe htrow alert/pop-up to deter
+  } else {
+    dexNumber--;
+  }
+};
 
-const incrementDex= () => {
-    if (dexNumber === 1021) {
-        return; ///maybe htrow alert/pop-up to deter
-    } else {
-        dexNumber++;
-    }
-}
+const incrementDex = () => {
+  if (dexNumber === 1021) {
+    return; ///maybe htrow alert/pop-up to deter
+  } else {
+    dexNumber++;
+  }
+};
 
-const updateObjectAndResponse = (dexValue) => {
-    pokemonObject =  `https://pokeapi.co/api/v2/pokemon/${dexValue}/`
-    
-}
+const updateObject = (dexValue) => {
+  pokemonObject = `https://pokeapi.co/api/v2/pokemon/${dexValue}/`;
+};
 
-const updateSprite = () => {
-    pokemonObject
-    pokeSprite.setAttribute("src", pokemonObject)
-}
+const updateName = () => {};
 
-const updateName = () => {
+const updateType = () => {};
 
-}
+//Initial call for loading
+updateSprite();
 
-const updateType = () => {
+leftButton.addEventListener("click", () => {
+  decrementDex();
+  updateObject(dexNumber);
+  updateSprite();
+  updateName();
+  updateType();
+});
 
-}
+rightButton.addEventListener("click", () => {
+  incrementDex();
+  updateObject(dexNumber);
+  updateSprite();
+  updateName();
+  updateType();
+});
