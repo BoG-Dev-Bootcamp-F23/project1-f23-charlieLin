@@ -96,17 +96,17 @@ const updateType = async () => {
             console.log(pokemonTypeArr.length);
             const type = pokemonTypeArr[0].type.name;
             firstType.style.visibility = "visible";
-            firstType.style.backGroundColor = typeMap[type];
+            firstType.style.backgroundColor = typeMap[type];
             firstType.textContent = type;
             secondType.style.visibility = "hidden";
         } else {
             const type1 = pokemonTypeArr[0].type.name;
             const type2 = pokemonTypeArr[1].type.name;
             firstType.style.visibility = "visible";
-            firstType.style.backGroundColor = typeMap[type1];
+            firstType.style.backgroundColor = typeMap[type1];
             firstType.textContent = type1;
             secondType.style.visibility = "visible";
-            secondType.style.backGroundColor = typeMap[type2];
+            secondType.style.backgroundColor = typeMap[type2];
             secondType.textContent = type2;
         }
       } catch (error) {

@@ -5,7 +5,7 @@ body {
 
 header {
     text-align: center;
-    font-size: 32px;
+    font-size: 64px;
     font-weight: 700;
 }
 
@@ -27,4 +27,18 @@ main {
     border: solid #000000 1px;
     border-radius: 5px;
     padding: 11.5px 0
+}
+
+#type-box-section h4 {
+    margin: 0;
+}
+
+#type-box-section ul {
+    display: flex;
+    
+}
+
+#type-box-section ul li {
+    list-style: none;
+    border: solid black 1px
 }
