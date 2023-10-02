@@ -21,13 +21,12 @@ const pokemonResponse = async () => {
   } catch (error) {
     console.log(error);
   }
-};
-
-let pokemonData = pokemonResponse();
+}; 
 
 const updateSprite = async () => {
         try {
           let pokemonData = await pokemonResponse();
+          x = pokemonData.sprites.front_default;
           const spriteSRC = pokemonData.sprites.front_default;
           pokeSprite.setAttribute("src", spriteSRC);
         } catch (error) {
@@ -55,12 +54,21 @@ const updateObject = (dexValue) => {
   pokemonObject = `https://pokeapi.co/api/v2/pokemon/${dexValue}/`;
 };
 
-const updateName = () => {};
+const updateName = async () => {
+    try {
+        const pokemonData = await pokemonResponse();
+        const name = pokemonData.species.name;
+        pokeName.textContent = name;
+      } catch (error) {
+        console.log(error);
+      }
+};
 
 const updateType = () => {};
 
 //Initial call for loading
 updateSprite();
+updateName();
 
 leftButton.addEventListener("click", () => {
   decrementDex();
