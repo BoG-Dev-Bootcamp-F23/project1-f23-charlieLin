@@ -11,4 +11,16 @@ header {
 
 main {
     display: flex;
+    justify-content: space-around;
+}
+
+#left-section {
+    display: flex;
+    flex-direction: column;
+}
+
+#pokemon-sprite {
+    border: solid black 2px;
+    height: 463px;
+    width: 463px;
 }
