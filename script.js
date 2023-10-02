@@ -15,7 +15,7 @@ const leftButton = document.querySelector("#left-button");
 const rightButton = document.querySelector("#right-button");
 const firstType = document.querySelector("#type-1");
 const secondType = document.querySelector("#type-2");
-const typeColors = {
+const typeMap = {
     "normal" : "#A8A77A",
     "fire" : "#EE8130",
     "water" : "#6390F0",
@@ -90,7 +90,25 @@ const updateName = async () => {
 const updateType = async () => {
     try {
         const pokemonData = await pokemonResponse();
-        const pokemonTypeDataArr = pokemonData.types
+        const pokemonTypeArr = pokemonData.types;
+        //assuming both types are visibility: hidden
+        if (pokemonTypeArr.length === 1) {
+            console.log(pokemonTypeArr.length);
+            const type = pokemonTypeArr[0].type.name;
+            firstType.style.visibility = "visible";
+            firstType.style.backGroundColor = typeMap[type];
+            firstType.textContent = type;
+            secondType.style.visibility = "hidden";
+        } else {
+            const type1 = pokemonTypeArr[0].type.name;
+            const type2 = pokemonTypeArr[1].type.name;
+            firstType.style.visibility = "visible";
+            firstType.style.backGroundColor = typeMap[type1];
+            firstType.textContent = type1;
+            secondType.style.visibility = "visible";
+            secondType.style.backGroundColor = typeMap[type2];
+            secondType.textContent = type2;
+        }
       } catch (error) {
         console.log(error);
       }
