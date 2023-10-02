@@ -8,3 +8,7 @@ header {
     font-size: 32px;
     font-weight: 700;
 }
+
+main {
+    display: flex;
+}
