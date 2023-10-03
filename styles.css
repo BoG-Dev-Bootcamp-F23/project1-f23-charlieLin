@@ -40,5 +40,9 @@ main {
 
 #type-box-section ul li {
     list-style: none;
-    border: solid black 1px
+    border: solid black 1px;
+    border-radius: 5px;
+    min-width: 65px;
+    text-align: center;
+    margin: 0px 10px;
 }

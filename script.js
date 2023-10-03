@@ -49,7 +49,6 @@ const pokemonResponse = async () => {
 const updateSprite = async () => {
         try {
           let pokemonData = await pokemonResponse();
-          x = pokemonData.sprites.front_default;
           const spriteSRC = pokemonData.sprites.front_default;
           pokeSprite.setAttribute("src", spriteSRC);
         } catch (error) {
