@@ -17,12 +17,13 @@ const firstType = document.querySelector("#type-1");
 const secondType = document.querySelector("#type-2");
 const infoMoveContent = document.querySelector("#info-move-content");
 const infoButton = document.querySelector("#info-button");
-const movesButton = document.querySelector("#move-button");
+const movesButton = document.querySelector("#moves-button");
 const statsList = document.querySelectorAll(".stat");
 const statNamesArr = [];
 for (let i = 0; i < statsList.length; i++) {
   statNamesArr[i] = statsList[i].textContent;
 }
+const movesArray = [];
 
 const typeMap = {
   normal: "#A8A77A",
@@ -120,10 +121,6 @@ const updateType = async () => {
   }
 };
 
-// const resetInfoMove = () => {
-//     for
-// }
-
 let infoFound = false;
 let movesFound = false;
 
@@ -135,14 +132,20 @@ const resetInfoMove = () => {
   }
 };
 
-//if info found is true, when user clicks info, nothing happens, stat remains true
-
 const updateInfo = async () => {
   try {
     if (infoFound === true) {
       return;
-    } else {
+    }
+    if (movesFound === true) {
+        toggleMoves();
+        toggleInfo();
+        movesFound = false;
+        infoFound = true;
+        return
+    }
       const pokemonData = await pokemonResponse();
+
       const pokeHeight = (pokemonData.height / 10).toString() + "m";
       const pokeWeight = (pokemonData.weight / 10).toString() + "kg";
       const pokeHP = pokemonData.stats[0].base_stat.toString();
@@ -151,6 +154,82 @@ const updateInfo = async () => {
       const pokeSPATK = pokemonData.stats[3].base_stat.toString();
       const pokeSPDEF = pokemonData.stats[4].base_stat.toString();
       const pokeSPD = pokemonData.stats[5].base_stat.toString();
+
+      statsList[0].textContent = statsList[0].textContent.concat(pokeHeight);
+      statsList[1].textContent = statsList[1].textContent.concat(pokeWeight);
+      statsList[2].textContent = statsList[2].textContent.concat(pokeHP);
+      statsList[3].textContent = statsList[3].textContent.concat(pokeATK);
+      statsList[4].textContent = statsList[4].textContent.concat(pokeDEF);
+      statsList[5].textContent = statsList[5].textContent.concat(pokeSPATK);
+      statsList[6].textContent = statsList[6].textContent.concat(pokeSPDEF);
+      statsList[7].textContent = statsList[7].textContent.concat(pokeSPD);
+      movesFound = false;
+      infoFound = true;
+    } catch (error) {
+    console.log(error);
+  }
+};
+
+const updateMoves = async () => {
+  try {
+    if (movesFound === true) {
+      return;
+    }
+    if (infoFound === true) {
+        toggleInfo();
+        toggleMoves();
+        movesFound = true;
+        infoFound = false;
+        return;
+    }
+    const pokemonData = await pokemonResponse();
+    const moveArr = pokemonData.moves;
+    for (let i = 0; i < moveArr.length; i++) {
+      const moveItem = document.createElement("li");
+      moveItem.textContent = moveArr[i].move.name;
+      moveItem.classList.add("move");
+      moveItem.classList.add("content-visibility");
+      infoMoveContent.appendChild(moveItem);
+    }
+    infoFound = false;
+    movesFound = true;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const toggleInfo = () => {
+    for (let i = 0; i < statsList.length; i++) {
+      statsList[i].classList.toggle("content-visibility");
+    }
+};
+
+const toggleMoves = () => {
+    const movesArr = document.querySelectorAll(".move");
+    for (let i = 0; i < movesArr.length; i++) {
+        movesArr[i].classList.toggle("content-visibility");
+    }
+}
+
+const onLoad = async () => {
+    const pokemonData = await pokemonResponse();
+    const moveArr = pokemonData.moves;
+    for (let i = 0; i < moveArr.length; i++) {
+      const moveItem = document.createElement("li");
+      moveItem.textContent = moveArr[i].move.name;
+      moveItem.classList.add("move");
+      moveItem.classList.add("content-visibility");
+      infoMoveContent.appendChild(moveItem);
+    }
+    const pokeHeight = (pokemonData.height / 10).toString() + "m";
+      const pokeWeight = (pokemonData.weight / 10).toString() + "kg";
+      const pokeHP = pokemonData.stats[0].base_stat.toString();
+      const pokeATK = pokemonData.stats[1].base_stat.toString();
+      const pokeDEF = pokemonData.stats[2].base_stat.toString();
+      const pokeSPATK = pokemonData.stats[3].base_stat.toString();
+      const pokeSPDEF = pokemonData.stats[4].base_stat.toString();
+      const pokeSPD = pokemonData.stats[5].base_stat.toString();
+
       statsList[0].textContent = statsList[0].textContent.concat(pokeHeight);
       statsList[1].textContent = statsList[1].textContent.concat(pokeWeight);
       statsList[2].textContent = statsList[2].textContent.concat(pokeHP);
@@ -160,17 +239,13 @@ const updateInfo = async () => {
       statsList[6].textContent = statsList[6].textContent.concat(pokeSPDEF);
       statsList[7].textContent = statsList[7].textContent.concat(pokeSPD);
       infoFound = true;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
+}
 
 //Initial call for loading 1st pokemon
 updateSprite();
 updateName();
 updateType();
-updateInfo();
+onLoad();
 
 leftButton.addEventListener("click", () => {
   decrementDex();
@@ -179,7 +254,7 @@ leftButton.addEventListener("click", () => {
   updateName();
   updateType();
   resetInfoMove();
-  updateInfo();
+  onLoad();
 });
 
 rightButton.addEventListener("click", () => {
@@ -189,9 +264,13 @@ rightButton.addEventListener("click", () => {
   updateName();
   updateType();
   resetInfoMove();
-  updateInfo();
+  onLoad();
 });
 
 infoButton.addEventListener("click", () => {
   updateInfo();
+});
+
+movesButton.addEventListener("click", () => {
+  updateMoves();
 });

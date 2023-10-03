@@ -102,3 +102,7 @@ main {
   display: flex;
   justify-content: space-evenly;
 }
+
+.content-visibility {
+    content-visibility: hidden;
+}
