@@ -15,27 +15,30 @@ const leftButton = document.querySelector("#left-button");
 const rightButton = document.querySelector("#right-button");
 const firstType = document.querySelector("#type-1");
 const secondType = document.querySelector("#type-2");
-const typeMap = {
-    "normal" : "#A8A77A",
-    "fire" : "#EE8130",
-    "water" : "#6390F0",
-    "electric" : "#F7D02C",
-    "grass" : "#7AC74C",
-    "ice" : "#96D9D6",
-    "fighting" : "#C22E28",
-    "poison" : "#A33EA1",
-    "ground" : "#E2BF65",
-    "flying" : "#A98FF3",
-    "psychic" : "#F95587",
-    "bug" : "#A6B91A",
-    "rock" : "#B6A136",
-    "ghost" : "#735797",
-    "dragon" : "#6F35FC",
-    "dark" : "#705746",
-    "steel" : "#B7B7CE",
-    "fairy" : "#D685AD",
-}
+const infoMoveContent = document.querySelector("#info-move-content");
+const infoButton = document.querySelector("#info-button");
+const movesButton = document.querySelector("#move-button");
 
+const typeMap = {
+  normal: "#A8A77A",
+  fire: "#EE8130",
+  water: "#6390F0",
+  electric: "#F7D02C",
+  grass: "#7AC74C",
+  ice: "#96D9D6",
+  fighting: "#C22E28",
+  poison: "#A33EA1",
+  ground: "#E2BF65",
+  flying: "#A98FF3",
+  psychic: "#F95587",
+  bug: "#A6B91A",
+  rock: "#B6A136",
+  ghost: "#735797",
+  dragon: "#6F35FC",
+  dark: "#705746",
+  steel: "#B7B7CE",
+  fairy: "#D685AD",
+};
 
 const pokemonResponse = async () => {
   try {
@@ -44,16 +47,16 @@ const pokemonResponse = async () => {
   } catch (error) {
     console.log(error);
   }
-}; 
+};
 
 const updateSprite = async () => {
-        try {
-          let pokemonData = await pokemonResponse();
-          const spriteSRC = pokemonData.sprites.front_default;
-          pokeSprite.setAttribute("src", spriteSRC);
-        } catch (error) {
-          console.log(error);
-        }
+  try {
+    let pokemonData = await pokemonResponse();
+    const spriteSRC = pokemonData.sprites.front_default;
+    pokeSprite.setAttribute("src", spriteSRC);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const decrementDex = () => {
@@ -77,40 +80,55 @@ const updateObject = (dexValue) => {
 };
 
 const updateName = async () => {
-    try {
-        const pokemonData = await pokemonResponse();
-        const name = pokemonData.species.name;
-        pokeName.textContent = name;
-      } catch (error) {
-        console.log(error);
-      }
+  try {
+    const pokemonData = await pokemonResponse();
+    const name = pokemonData.species.name;
+    pokeName.textContent = name;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const updateType = async () => {
-    try {
-        const pokemonData = await pokemonResponse();
-        const pokemonTypeArr = pokemonData.types;
-        //assuming both types are visibility: hidden
-        if (pokemonTypeArr.length === 1) {
-            const type = pokemonTypeArr[0].type.name;
-            firstType.style.visibility = "visible";
-            firstType.style.backgroundColor = typeMap[type];
-            firstType.textContent = type;
-            secondType.style.visibility = "hidden";
-        } else {
-            const type1 = pokemonTypeArr[0].type.name;
-            const type2 = pokemonTypeArr[1].type.name;
-            firstType.style.visibility = "visible";
-            firstType.style.backgroundColor = typeMap[type1];
-            firstType.textContent = type1;
-            secondType.style.visibility = "visible";
-            secondType.style.backgroundColor = typeMap[type2];
-            secondType.textContent = type2;
-        }
-      } catch (error) {
-        console.log(error);
-      }
+  try {
+    const pokemonData = await pokemonResponse();
+    const pokemonTypeArr = pokemonData.types;
+    //assuming both types are visibility: hidden
+    if (pokemonTypeArr.length === 1) {
+      const type = pokemonTypeArr[0].type.name;
+      firstType.style.visibility = "visible";
+      firstType.style.backgroundColor = typeMap[type];
+      firstType.textContent = type;
+      secondType.style.visibility = "hidden";
+    } else {
+      const type1 = pokemonTypeArr[0].type.name;
+      const type2 = pokemonTypeArr[1].type.name;
+      firstType.style.visibility = "visible";
+      firstType.style.backgroundColor = typeMap[type1];
+      firstType.textContent = type1;
+      secondType.style.visibility = "visible";
+      secondType.style.backgroundColor = typeMap[type2];
+      secondType.textContent = type2;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
+
+let infoFound = false;
+let movesFound = false;
+
+const updateInfo = async () => {
+    try {
+        if (infoFound === true) {
+            return
+        } else {
+            const pokemonData = await pokemonResponse();
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 //Initial call for loading
 updateSprite();

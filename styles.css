@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter'
 }
 
 header {
@@ -76,17 +76,30 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 50px;
 }
 
 #right-header {
+    text-align: center;
     margin: 0;
-    max-height: 50px;
-    margin-bottom: 10px;
+    height: 44px;
+    width: 68px;
 }
+
 #info-move-info-section {
     overflow: auto;
     background-color: #E8E8E8;
     width: 486px;
-    height: 628px;
+    height: 598px;
+}
+
+#info-move-content {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    font-size: 36px;
+}
+
+#info-move-buttons {
+    display: flex;
+    justify-content: space-evenly;
 }
