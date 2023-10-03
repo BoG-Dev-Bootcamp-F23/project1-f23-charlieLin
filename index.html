@@ -1,66 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="styles.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <script src="script.js" type="text/javascript" defer></script>
     <title>Mini-PokeDex</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <p>Bits of Good Mid-Semester Project</p>
+      <p>Bits of Good Mid-Semester Project</p>
     </header>
     <main>
-        <section id="left-section">
-            <article id="pokemon-sprite-name">
-                <img src="" alt="Pokemon Sprite" id="pokemon-sprite">
-                <p id="pokemon-name"></p>
-            </article>
-            <section id="type-box-section">
-                <h3>Types:</h3>
-                <ul>
-                    <li id="type-1">
-                    </li>
-                    <li id="type-2">
-                    </li>
-                </ul>
-            </section>
-            <section id="arrow-buttons-section">
-                <button id="left-button">
-                    <img src="images/left-arrow.png" alt="left-arrrow">
-                </button>
-                <button id="right-button">
-                    <img src= "images/right-arrow.png" alt="right-arrrow">
-                </button>
-            </section>
+      <section id="left-section">
+        <article id="pokemon-sprite-name">
+          <img src="" alt="Pokemon Sprite" id="pokemon-sprite" />
+          <p id="pokemon-name"></p>
+        </article>
+        <section id="type-box-section">
+          <h3>Types:</h3>
+          <ul>
+            <li id="type-1"></li>
+            <li id="type-2"></li>
+          </ul>
         </section>
-        <aside id="right-section">
-            <h1 id="right-header">Info</h1>
-            <section id="info-move-info-section">
-                <ul id="info-move-content">
-                    <li>height: </li>
-                    <li>weight: </li>
-                    <li>hp: </li>
-                    <li>attack: </li>
-                    <li>defence: </li>
-                    <li>special-attack: </li>
-                    <li>special-defence: </li>
-                    <li>speed: </li>
-                </ul>
-            </section>
-            <section id="info-move-buttons">
-                <button id="info-button">
-                    Info
-                </button>
-                <button id="moves-button">
-                    Moves
-                </button>
-            </section>
-        </aside>
+        <section id="arrow-buttons-section">
+          <button id="left-button">
+            <img src="images/left-arrow.png" alt="left-arrrow" />
+          </button>
+          <button id="right-button">
+            <img src="images/right-arrow.png" alt="right-arrrow" />
+          </button>
+        </section>
+      </section>
+      <aside id="right-section">
+        <h1 id="right-header">Info</h1>
+        <section id="info-move-info-section">
+          <ul id="info-move-content">
+            <li class="stat">height:</li>
+            <li class="stat">weight:</li>
+            <li class="stat">hp:</li>
+            <li class="stat">attack:</li>
+            <li class="stat">defence:</li>
+            <li class="stat">special-attack:</li>
+            <li class="stat">special-defence:</li>
+            <li class="stat">speed:</li>
+          </ul>
+        </section>
+        <section id="info-move-buttons">
+          <button id="info-button">Info</button>
+          <button id="moves-button">Moves</button>
+        </section>
+      </aside>
     </main>
-</body>
+  </body>
 </html>

@@ -1,105 +1,104 @@
 body {
-    margin: 0;
-    font-family: 'Inter'
+  margin: 0;
+  font-family: "Inter";
 }
 
 header {
-    text-align: center;
-    font-size: 64px;
-    font-weight: 700; 
+  text-align: center;
+  font-size: 64px;
+  font-weight: 700;
 }
 
 main {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 #pokemon-sprite {
-    border: solid #000000 4px;
-    height: 463px;
-    width: 463px;
+  border: solid #000000 4px;
+  height: 463px;
+  width: 463px;
 }
 
 #pokemon-name {
-    background-color: #E8E8E8;
-    text-align: center;
-    font-size: 36px;
-    border: solid #000000 1px;
-    border-radius: 5px;
-    padding: 11.5px 0
+  background-color: #e8e8e8;
+  text-align: center;
+  font-size: 36px;
+  border: solid #000000 1px;
+  border-radius: 5px;
+  padding: 11.5px 0;
 }
 
 #type-box-section h4 {
-    margin: 0;
+  margin: 0;
 }
 
 #type-box-section ul {
-    display: flex;
-    max-width: 150px;
-    justify-content: space-between;
-    padding: 0%;
+  display: flex;
+  max-width: 150px;
+  justify-content: space-between;
+  padding: 0%;
 }
 
 #type-box-section ul li {
-    list-style: none;
-    border: solid transparent 1px;
-    border-radius: 5px;
-    width: 65px;
-    padding: 2px;
-    text-align: center;
+  list-style: none;
+  border: solid transparent 1px;
+  border-radius: 5px;
+  width: 65px;
+  padding: 2px;
+  text-align: center;
 }
 
 #arrow-buttons-section {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 #arrow-buttons-section button {
-    display: flex;
-    justify-content: space-evenly;
-    color: #000000;
-    border: solid transparent 1px;
-    border-radius: 4px;
-    font-size: 5em;
-    margin-top: 42px;
-    background-color: #E8E8E8;
-    height: 69px;
-    width: 173px;
+  display: flex;
+  justify-content: space-evenly;
+  color: #000000;
+  border: solid transparent 1px;
+  border-radius: 4px;
+  font-size: 5em;
+  margin-top: 42px;
+  background-color: #e8e8e8;
+  height: 69px;
+  width: 173px;
 }
 
 #arrow-buttons-section button img {
-    height: 69px;
+  height: 69px;
 }
 
-
 #right-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #right-header {
-    text-align: center;
-    margin: 0;
-    height: 44px;
-    width: 68px;
+  text-align: center;
+  margin: 0;
+  height: 44px;
+  width: 68px;
 }
 
 #info-move-info-section {
-    overflow: auto;
-    background-color: #E8E8E8;
-    width: 486px;
-    height: 598px;
+  overflow: auto;
+  background-color: #e8e8e8;
+  width: 486px;
+  height: 598px;
 }
 
 #info-move-content {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    font-size: 36px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  font-size: 36px;
 }
 
 #info-move-buttons {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
