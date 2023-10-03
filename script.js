@@ -92,7 +92,6 @@ const updateType = async () => {
         const pokemonTypeArr = pokemonData.types;
         //assuming both types are visibility: hidden
         if (pokemonTypeArr.length === 1) {
-            console.log(pokemonTypeArr.length);
             const type = pokemonTypeArr[0].type.name;
             firstType.style.visibility = "visible";
             firstType.style.backgroundColor = typeMap[type];

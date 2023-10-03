@@ -6,7 +6,7 @@ body {
 header {
     text-align: center;
     font-size: 64px;
-    font-weight: 700;
+    font-weight: 700; 
 }
 
 main {
@@ -35,14 +35,39 @@ main {
 
 #type-box-section ul {
     display: flex;
-    
+    max-width: 150px;
+    justify-content: space-between;
+    padding: 0%;
 }
 
 #type-box-section ul li {
     list-style: none;
-    border: solid black 1px;
+    border: solid transparent 1px;
     border-radius: 5px;
-    min-width: 65px;
+    width: 65px;
+    padding: 2px;
     text-align: center;
-    margin: 0px 10px;
+}
+
+#arrow-buttons-section {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#arrow-buttons-section button {
+    display: flex;
+    justify-content: space-evenly;
+    color: #000000;
+    border: solid transparent 1px;
+    border-radius: 4px;
+    font-size: 5em;
+    margin-top: 42px;
+    background-color: #E8E8E8;
+    height: 69px;
+    width: 173px;
+}
+
+#arrow-buttons-section button img {
+    height: 69px;
+
 }
