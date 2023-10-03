@@ -11,7 +11,7 @@ header {
 
 main {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #pokemon-sprite {
@@ -69,5 +69,24 @@ main {
 
 #arrow-buttons-section button img {
     height: 69px;
+}
 
+
+#right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 50px;
+}
+
+#right-header {
+    margin: 0;
+    max-height: 50px;
+    margin-bottom: 10px;
+}
+#info-move-info-section {
+    overflow: auto;
+    background-color: #E8E8E8;
+    width: 486px;
+    height: 628px;
 }
