@@ -15,6 +15,7 @@ const leftButton = document.querySelector("#left-button");
 const rightButton = document.querySelector("#right-button");
 const firstType = document.querySelector("#type-1");
 const secondType = document.querySelector("#type-2");
+const rightHeader = document.querySelector("#right-header");
 const infoMoveContent = document.querySelector("#info-move-content");
 const infoButton = document.querySelector("#info-button");
 const movesButton = document.querySelector("#moves-button");
@@ -67,7 +68,7 @@ const updateSprite = async () => {
 
 const decrementDex = () => {
   if (dexNumber === 1) {
-    return; ///maybe htrow alert/pop-up to deter
+    return;
   } else {
     dexNumber--;
   }
@@ -75,7 +76,7 @@ const decrementDex = () => {
 
 const incrementDex = () => {
   if (dexNumber === 1021) {
-    return; ///maybe htrow alert/pop-up to deter
+    return;
   } else {
     dexNumber++;
   }
@@ -121,133 +122,66 @@ const updateType = async () => {
   }
 };
 
-let infoFound = false;
-let movesFound = false;
-
 const resetInfoMove = () => {
   for (let i = 0; i < statNamesArr.length; i++) {
     statsList[i].textContent = statNamesArr[i];
   }
-  const moves = document.querySelectorAll(".move")
+  const moves = document.querySelectorAll(".move");
   for (let i = 0; i < moves.length; i++) {
     infoMoveContent.removeChild(moves[i]);
   }
 };
 
-const updateInfo = async () => {
-  try {
-    if (infoFound === true) {
-      return;
-    }
-    if (movesFound === true) {
-        toggleMoves();
-        toggleInfo();
-        movesFound = false;
-        infoFound = true;
-        return
-    }
-      const pokemonData = await pokemonResponse();
-
-      const pokeHeight = (pokemonData.height / 10).toString() + "m";
-      const pokeWeight = (pokemonData.weight / 10).toString() + "kg";
-      const pokeHP = pokemonData.stats[0].base_stat.toString();
-      const pokeATK = pokemonData.stats[1].base_stat.toString();
-      const pokeDEF = pokemonData.stats[2].base_stat.toString();
-      const pokeSPATK = pokemonData.stats[3].base_stat.toString();
-      const pokeSPDEF = pokemonData.stats[4].base_stat.toString();
-      const pokeSPD = pokemonData.stats[5].base_stat.toString();
-
-      statsList[0].textContent = statsList[0].textContent.concat(pokeHeight);
-      statsList[1].textContent = statsList[1].textContent.concat(pokeWeight);
-      statsList[2].textContent = statsList[2].textContent.concat(pokeHP);
-      statsList[3].textContent = statsList[3].textContent.concat(pokeATK);
-      statsList[4].textContent = statsList[4].textContent.concat(pokeDEF);
-      statsList[5].textContent = statsList[5].textContent.concat(pokeSPATK);
-      statsList[6].textContent = statsList[6].textContent.concat(pokeSPDEF);
-      statsList[7].textContent = statsList[7].textContent.concat(pokeSPD);
-      movesFound = false;
-      infoFound = true;
-    } catch (error) {
-    console.log(error);
-  }
-};
-
-const updateMoves = async () => {
-  try {
-    if (movesFound === true) {
-      return;
-    }
-    if (infoFound === true) {
-        toggleInfo();
-        toggleMoves();
-        movesFound = true;
-        infoFound = false;
-        return;
-    }
-    const pokemonData = await pokemonResponse();
-    const moveArr = pokemonData.moves;
-    for (let i = 0; i < moveArr.length; i++) {
-      const moveItem = document.createElement("li");
-      moveItem.textContent = moveArr[i].move.name;
-      moveItem.classList.add("move");
-      moveItem.classList.add("content-visibility");
-      infoMoveContent.appendChild(moveItem);
-    }
-    infoFound = false;
-    movesFound = true;
-  } catch (e) {
-    console.log(e);
-  }
-};
-
 const toggleInfo = () => {
-    for (let i = 0; i < statsList.length; i++) {
-      statsList[i].classList.toggle("content-visibility");
-    }
+  for (let i = 0; i < statsList.length; i++) {
+    statsList[i].classList.toggle("content-visibility");
+  }
 };
 
 const toggleMoves = () => {
-    const movesArr = document.querySelectorAll(".move");
-    for (let i = 0; i < movesArr.length; i++) {
-        movesArr[i].classList.toggle("content-visibility");
-    }
-}
+  const movesArr = document.querySelectorAll(".move");
+  for (let i = 0; i < movesArr.length; i++) {
+    movesArr[i].classList.toggle("content-visibility");
+  }
+};
 
 const onLoad = async () => {
-    const pokemonData = await pokemonResponse();
-    const moveArr = pokemonData.moves;
-    for (let i = 0; i < moveArr.length; i++) {
-      const moveItem = document.createElement("li");
-      moveItem.textContent = moveArr[i].move.name;
-      moveItem.classList.add("move");
-      infoMoveContent.appendChild(moveItem);
+  const pokemonData = await pokemonResponse();
+  const moveArr = pokemonData.moves;
+  for (let i = 0; i < moveArr.length; i++) {
+    const moveItem = document.createElement("li");
+    moveItem.textContent = moveArr[i].move.name;
+    moveItem.classList.add("move");
+    if (movesButton.style.backgroundColor != "rgb(124, 255, 121)") {
+      moveItem.classList.add("content-visibility");
     }
-    const pokeHeight = (pokemonData.height / 10).toString() + "m";
-      const pokeWeight = (pokemonData.weight / 10).toString() + "kg";
-      const pokeHP = pokemonData.stats[0].base_stat.toString();
-      const pokeATK = pokemonData.stats[1].base_stat.toString();
-      const pokeDEF = pokemonData.stats[2].base_stat.toString();
-      const pokeSPATK = pokemonData.stats[3].base_stat.toString();
-      const pokeSPDEF = pokemonData.stats[4].base_stat.toString();
-      const pokeSPD = pokemonData.stats[5].base_stat.toString();
+    infoMoveContent.appendChild(moveItem);
+  }
+  const pokeHeight = (pokemonData.height / 10).toString() + "m";
+  const pokeWeight = (pokemonData.weight / 10).toFixed(1).toString() + "kg";
+  const pokeHP = pokemonData.stats[0].base_stat.toString();
+  const pokeATK = pokemonData.stats[1].base_stat.toString();
+  const pokeDEF = pokemonData.stats[2].base_stat.toString();
+  const pokeSPATK = pokemonData.stats[3].base_stat.toString();
+  const pokeSPDEF = pokemonData.stats[4].base_stat.toString();
+  const pokeSPD = pokemonData.stats[5].base_stat.toString();
 
-      statsList[0].textContent = statsList[0].textContent.concat(pokeHeight);
-      statsList[1].textContent = statsList[1].textContent.concat(pokeWeight);
-      statsList[2].textContent = statsList[2].textContent.concat(pokeHP);
-      statsList[3].textContent = statsList[3].textContent.concat(pokeATK);
-      statsList[4].textContent = statsList[4].textContent.concat(pokeDEF);
-      statsList[5].textContent = statsList[5].textContent.concat(pokeSPATK);
-      statsList[6].textContent = statsList[6].textContent.concat(pokeSPDEF);
-      statsList[7].textContent = statsList[7].textContent.concat(pokeSPD);
-      infoFound = true;
-}
+  statsList[0].textContent = statsList[0].textContent.concat(pokeHeight);
+  statsList[1].textContent = statsList[1].textContent.concat(pokeWeight);
+  statsList[2].textContent = statsList[2].textContent.concat(pokeHP);
+  statsList[3].textContent = statsList[3].textContent.concat(pokeATK);
+  statsList[4].textContent = statsList[4].textContent.concat(pokeDEF);
+  statsList[5].textContent = statsList[5].textContent.concat(pokeSPATK);
+  statsList[6].textContent = statsList[6].textContent.concat(pokeSPDEF);
+  statsList[7].textContent = statsList[7].textContent.concat(pokeSPD);
+};
 
 //Initial call for loading 1st pokemon
 updateSprite();
 updateName();
 updateType();
 onLoad();
-infoButton.style.backgroundColor = "#7CFF79"
+infoButton.style.backgroundColor = "#7CFF79";
 
 leftButton.addEventListener("click", () => {
   decrementDex();
@@ -267,21 +201,28 @@ rightButton.addEventListener("click", () => {
   updateType();
   resetInfoMove();
   onLoad();
-  if (infoButton.backgroundColor === "#7CFF79") {
-    toggleInfo();
-  } else {
-    toggleMoves();
-  }
 });
 
 infoButton.addEventListener("click", () => {
   movesButton.style.backgroundColor = "#E8E8E8";
-  infoButton.style.backgroundColor = "#7CFF79";
-  updateInfo();
+  if (infoButton.style.backgroundColor === "rgb(124, 255, 121)") {
+    return;
+  } else {
+    infoButton.style.backgroundColor = "#7CFF79";
+    rightHeader.textContent = "Info"
+    toggleInfo();
+    toggleMoves();
+  }
 });
 
 movesButton.addEventListener("click", () => {
   infoButton.style.backgroundColor = "#E8E8E8";
-  movesButton.style.backgroundColor = "#7CFF79";
-  updateMoves();
+  if (movesButton.style.backgroundColor === "rgb(124, 255, 121)") {
+    return;
+  } else {
+    movesButton.style.backgroundColor = "#7CFF79";
+    rightHeader.textContent = "Moves"
+    toggleMoves();
+    toggleInfo();
+  }
 });

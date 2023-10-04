@@ -7,6 +7,8 @@ header {
   text-align: center;
   font-size: 64px;
   font-weight: 700;
+  margin-top: 46px;
+  margin-bottom: 25px;
 }
 
 main {
@@ -61,14 +63,15 @@ main {
   border: solid transparent 1px;
   border-radius: 4px;
   font-size: 5em;
-  margin-top: 42px;
-  background-color: #e8e8e8;
+  margin-top: 40px;
+  background-color: #E8E8E8;
   height: 69px;
   width: 173px;
 }
 
 #arrow-buttons-section button img {
-  height: 69px;
+    margin-top: 2px;
+  height: 60px;
 }
 
 #right-section {
@@ -79,7 +82,8 @@ main {
 
 #right-header {
   text-align: center;
-  margin: 0;
+  margin-top: 0;
+  font-size: 36px;
   height: 44px;
   width: 68px;
 }
@@ -89,6 +93,7 @@ main {
   background-color: #e8e8e8;
   width: 486px;
   height: 598px;
+  margin-top: 10px;
 }
 
 #info-move-content {
@@ -100,7 +105,17 @@ main {
 
 #info-move-buttons {
   display: flex;
-  justify-content: space-evenly;
+  margin-top: 69px;
+  justify-content: space-between;
+  width: 380px;
+}
+
+#info-move-buttons button {
+    border: solid transparent 1px;
+    border-radius: 4px;
+    width: 173px;
+    height: 69px;
+    font-size: 36px;
 }
 
 .content-visibility {
