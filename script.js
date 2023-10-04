@@ -75,7 +75,7 @@ const decrementDex = () => {
 };
 
 const incrementDex = () => {
-  if (dexNumber === 1021) {
+  if (dexNumber === 1017) {
     return;
   } else {
     dexNumber++;
@@ -209,7 +209,7 @@ infoButton.addEventListener("click", () => {
     return;
   } else {
     infoButton.style.backgroundColor = "#7CFF79";
-    rightHeader.textContent = "Info"
+    rightHeader.textContent = "Info";
     toggleInfo();
     toggleMoves();
   }
@@ -221,7 +221,7 @@ movesButton.addEventListener("click", () => {
     return;
   } else {
     movesButton.style.backgroundColor = "#7CFF79";
-    rightHeader.textContent = "Moves"
+    rightHeader.textContent = "Moves";
     toggleMoves();
     toggleInfo();
   }
