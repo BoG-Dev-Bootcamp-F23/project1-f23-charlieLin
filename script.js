@@ -125,10 +125,12 @@ let infoFound = false;
 let movesFound = false;
 
 const resetInfoMove = () => {
-  infoFound = false;
-  movesFound = false;
   for (let i = 0; i < statNamesArr.length; i++) {
     statsList[i].textContent = statNamesArr[i];
+  }
+  const moves = document.querySelectorAll(".move")
+  for (let i = 0; i < moves.length; i++) {
+    infoMoveContent.removeChild(moves[i]);
   }
 };
 
@@ -218,7 +220,6 @@ const onLoad = async () => {
       const moveItem = document.createElement("li");
       moveItem.textContent = moveArr[i].move.name;
       moveItem.classList.add("move");
-      moveItem.classList.add("content-visibility");
       infoMoveContent.appendChild(moveItem);
     }
     const pokeHeight = (pokemonData.height / 10).toString() + "m";
@@ -246,6 +247,7 @@ updateSprite();
 updateName();
 updateType();
 onLoad();
+infoButton.style.backgroundColor = "#7CFF79"
 
 leftButton.addEventListener("click", () => {
   decrementDex();
@@ -265,12 +267,21 @@ rightButton.addEventListener("click", () => {
   updateType();
   resetInfoMove();
   onLoad();
+  if (infoButton.backgroundColor === "#7CFF79") {
+    toggleInfo();
+  } else {
+    toggleMoves();
+  }
 });
 
 infoButton.addEventListener("click", () => {
+  movesButton.style.backgroundColor = "#E8E8E8";
+  infoButton.style.backgroundColor = "#7CFF79";
   updateInfo();
 });
 
 movesButton.addEventListener("click", () => {
+  infoButton.style.backgroundColor = "#E8E8E8";
+  movesButton.style.backgroundColor = "#7CFF79";
   updateMoves();
 });
