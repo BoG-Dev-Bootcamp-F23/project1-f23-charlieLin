@@ -1,12 +1,6 @@
-/* Going to need:
-1. Sprite
-2. Name
-3. Type
-4. Stats
-5. Move Set
-*/
 
 let dexNumber = 1;
+
 let pokemonObject = `https://pokeapi.co/api/v2/pokemon/${dexNumber}/`;
 
 const pokeSprite = document.querySelector("#pokemon-sprite");
@@ -100,7 +94,6 @@ const updateType = async () => {
   try {
     const pokemonData = await pokemonResponse();
     const pokemonTypeArr = pokemonData.types;
-    //assuming both types are visibility: hidden
     if (pokemonTypeArr.length === 1) {
       const type = pokemonTypeArr[0].type.name;
       firstType.style.visibility = "visible";
@@ -147,6 +140,8 @@ const toggleMoves = () => {
 
 const onLoad = async () => {
   const pokemonData = await pokemonResponse();
+
+  //loads moves for pokemon
   const moveArr = pokemonData.moves;
   for (let i = 0; i < moveArr.length; i++) {
     const moveItem = document.createElement("li");
@@ -157,6 +152,8 @@ const onLoad = async () => {
     }
     infoMoveContent.appendChild(moveItem);
   }
+
+  //loads stats for pokemon
   const pokeHeight = (pokemonData.height / 10).toString() + "m";
   const pokeWeight = (pokemonData.weight / 10).toFixed(1).toString() + "kg";
   const pokeHP = pokemonData.stats[0].base_stat.toString();
